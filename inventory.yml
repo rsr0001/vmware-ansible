@@ -1,0 +1,10 @@
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+
+  children:
+    vcenter:
+      hosts:
+        vcenter1:
+          ansible_host: "CHANGE_ME"  # Your vCenter FQDN or IP
