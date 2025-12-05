@@ -7,6 +7,5 @@ __pycache__/
 
 # Logs
 *.log
+group_vars/vcemter.yml
 group_vars/vcenter.yml
-group_vars/vc_info.yml
-group_vars/vc_info.yml
