@@ -7,8 +7,5 @@ all:
     vcenter:
       hosts:
         vcenter1:
-          ansible_host: "vc01.vt9labs.local"  # Your vCenter FQDN or IP
+          ansible_host: "vc01.vt9labs.local"
           ansible_connection: local
-
-# NEW: The ESXi host to query for this lab
-primary_esxi_hostname: "esx01.vt9labs.local"

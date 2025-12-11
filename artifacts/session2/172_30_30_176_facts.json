@@ -1,0 +1,48 @@
+{
+    "ansible_facts": {
+        "ansible_all_ipv4_addresses": [
+            "172.30.30.176"
+        ],
+        "ansible_bios_date": "2025-01-24T00:00:00+00:00",
+        "ansible_bios_version": "VMW201.00V.24519234.B64.2501240220",
+        "ansible_datastore": [],
+        "ansible_distribution": "VMware ESXi",
+        "ansible_distribution_build": "24755229",
+        "ansible_distribution_version": "9.0.0",
+        "ansible_host_connection_state": "connected",
+        "ansible_hostname": "172.30.30.176",
+        "ansible_in_maintenance_mode": false,
+        "ansible_interfaces": [
+            "vmk0"
+        ],
+        "ansible_memfree_mb": 6254,
+        "ansible_memtotal_mb": 8190,
+        "ansible_os_type": "vmnix-x86",
+        "ansible_processor": "AMD Ryzen 9 9955HX 16-Core Processor           ",
+        "ansible_processor_cores": 2,
+        "ansible_processor_count": 1,
+        "ansible_processor_vcpus": 2,
+        "ansible_product_name": "VMware20,1",
+        "ansible_product_serial": "VMware-42 33 00 ff d6 dc ba 71-0a 6a f9 1c 57 13 25 99",
+        "ansible_system_vendor": "VMware, Inc.",
+        "ansible_uptime": 95484,
+        "ansible_uuid": "ff003342-dcd6-71ba-0a6a-f91c57132599",
+        "ansible_vmk0": {
+            "device": "vmk0",
+            "ipv4": {
+                "address": "172.30.30.176",
+                "netmask": "255.255.255.0"
+            },
+            "macaddress": "00:50:56:b3:b9:89",
+            "mtu": 1500
+        },
+        "cluster": "VCF-Mgmt-Cluster",
+        "discovered_interpreter_python": "/usr/bin/python3",
+        "host_date_time": {},
+        "vsan_cluster_uuid": null,
+        "vsan_health": "unknown",
+        "vsan_node_uuid": null
+    },
+    "changed": false,
+    "failed": false
+}

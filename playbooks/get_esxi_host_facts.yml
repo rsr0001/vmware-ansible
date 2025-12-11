@@ -4,8 +4,12 @@
   gather_facts: no
 
   vars:
-    # Where to store raw JSON facts inside the repo
-    esxi_facts_output_dir: "artifacts/session2"
+    primary_esxi_hostname: "172.30.30.176"
+    vcenter_hostname: "172.30.30.13"
+    vcenter_username: "administrator@vsphere.local"
+    vcenter_password: "VMware1!VMware1!"
+    validate_certs: false
+    esxi_facts_output_dir: "/home/ubuntukn/vmware-ansible/artifacts/session2"
 
   tasks:
     - name: Show which ESXi host we are targeting
@@ -18,22 +22,49 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         esxi_hostname: "{{ primary_esxi_hostname }}"
-        validate_certs: "{{ validate_certs | default(false) }}"
+        validate_certs: "{{ validate_certs }}"
       register: esxi_hostfacts
 
     - name: Ensure artifacts directory exists
       file:
         path: "{{ esxi_facts_output_dir }}"
         state: directory
+        mode: '0755'
+
+    - name: Debug esxi_hostfacts before saving
+      debug:
+        var: esxi_hostfacts
 
     - name: Save raw host facts to JSON (for reference)
       copy:
-        dest: "{{ esxi_facts_output_dir }}/{{ primary_esxi_hostname }}_facts.json"
+        dest: "{{ esxi_facts_output_dir }}/{{ primary_esxi_hostname | replace('.', '_') }}_facts.json"
         content: "{{ esxi_hostfacts | to_nice_json }}"
 
     - name: Print a short summary for students
       debug:
         msg:
-          - "Host: {{ esxi_hostfacts.ansible_facts.ansible_facts.hw_product_name | default('unknown') }}"
-          - "CPU cores: {{ esxi_hostfacts.ansible_facts.ansible_facts.hw_processor_count | default('unknown') }}"
-          - "Memory (MB): {{ esxi_hostfacts.ansible_facts.ansible_facts.hw_memtotal_mb | default('unknown') }}"
+          - "Host: {{ esxi_hostfacts.ansible_facts.ansible_hostname | default('unknown') }}"
+          - "CPU cores: {{ esxi_hostfacts.ansible_facts.ansible_processor_cores | default('unknown') }}"
+          - "Memory (MB): {{ esxi_hostfacts.ansible_facts.ansible_memtotal_mb | default(0) }}"
+
+    - name: Create VDS
+      vmware_dvswitch:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter_name: "VCF-Datacenter"
+        switch_name: "VDS-Prod"
+        version: "7.0.3"
+        uplink_quantity: 2
+        state: present
+        validate_certs: false
+
+    - name: Add Host to VDS
+      vmware_dvs_host:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        switch_name: "VDS-Prod"
+        esxi_hostname: "172.30.30.176"
+        state: present
+        validate_certs: false
