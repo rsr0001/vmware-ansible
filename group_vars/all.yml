@@ -1,0 +1,5 @@
+primary_esxi_hostname: "esxinitya.vt9labs.local"
+vcenter_hostname: "vc01.vt9labs.local"
+vcenter_username: "administrator@vsphere.local"
+vcenter_password: "VMware1!VMware1!"
+validate_certs: false
