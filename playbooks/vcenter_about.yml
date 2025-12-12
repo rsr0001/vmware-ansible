@@ -17,3 +17,5 @@
     - name: Show vCenter about info
       debug:
         var: vc_about
+
+# pulling vcenter inforamtion 
