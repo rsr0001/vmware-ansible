@@ -23,8 +23,6 @@ vSphere Security documentation for more information.
    Update: 0
    Maintenance: 0
    Patch: 0
-[root@esxi01nitya:~] esxcli system uptime get
-Error: Unknown command or namespace system uptime get
 
 [root@esxi01nitya:~] esxcli hardware clock get
 2025-12-21T14:21:33Z
