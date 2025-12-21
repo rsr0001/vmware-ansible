@@ -1,0 +1,13 @@
+# esxi_vars.yml
+vcenter_hostname: 172.30.30.170
+vcenter_username: administrator@vsphere.local
+vcenter_password: Password
+
+# List of ESXi hosts
+esxi_hosts:
+  - 172.30.30.171
+  - 172.30.30.172
+  - 172.30.30.173
+
+# Output folder
+esxi_facts_output_dir: ~/vmware-ansible/output/esxi_facts

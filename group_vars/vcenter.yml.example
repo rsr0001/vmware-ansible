@@ -8,7 +8,7 @@
 #   - Never commit group_vars/vc_info.yml to Git.
 #   - This .example file is safe to commit and share.
 
-vcenter_hostname: "vcenter.lab.local"      # FQDN or IP of your vCenter
+vcenter_hostname: "vcsanitya.nitya.local"  # FQDN or IP of your vCenter
 vcenter_username: "CHANGE_ME"              # e.g. administrator@vsphere.local
 vcenter_password: "CHANGE_ME"              # your password (local only)
 vcenter_datacenter: "CHANGE_ME"            # e.g. 'Datacenter'

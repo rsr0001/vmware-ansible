@@ -1,0 +1,28 @@
+---
+- name: Collect ESXi host facts via vCenter
+  hosts: localhost
+  gather_facts: no
+
+  vars_files:
+    - esxi_vars.yml   # Load variables from external file
+
+  tasks:
+    - name: Ensure ESXi facts output directory exists
+      file:
+        path: "{{ esxi_facts_output_dir }}"
+        state: directory
+
+    - name: Collect ESXi facts for each host
+      community.vmware.vmware_host_facts:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        esxi_hostname: "{{ item }}"
+        validate_certs: no
+      loop: "{{ esxi_hosts }}"
+      register: esxi_facts
+
+    - name: Save ESXi facts to JSON file
+      copy:
+        content: "{{ esxi_facts.results | to_nice_json }}"
+        dest: "{{ esxi_facts_output_dir }}/esxi_facts.json"

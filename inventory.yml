@@ -1,14 +1,14 @@
 all:
   hosts:
-    localhost:
-      ansible_connection: local
-
-  children:
-    vcenter:
-      hosts:
-        vcenter1:
-          ansible_host: "vc01.vt9labs.local"  # Your vCenter FQDN or IP
-          ansible_connection: local
-
-# NEW: The ESXi host to query for this lab
-primary_esxi_hostname: "esx01.vt9labs.local"
+    esxi01nitya:
+      ansible_host: 172.30.30.171
+      ansible_user: root
+      ansible_password: Password
+    esxi02nitya:
+      ansible_host: 172.30.30.172
+      ansible_user: root
+      ansible_password: Password
+    esxi03nitya:
+      ansible_host: 172.30.30.173
+      ansible_user: root
+      ansible_password: Password
